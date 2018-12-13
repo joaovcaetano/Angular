@@ -1,0 +1,98 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+  <ngb-panel title="Usuarios">
+    <ng-template ngbPanelContent>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Apelido</th>
+            <th scope="col">Lista</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuarios of usuarios">
+            <td>{{usuarios.nome}}</td>
+            <td>{{usuarios.email}}</td>
+            <td>{{usuarios.apelido}}</td>
+            <td>{{usuarios.lista}}</td>
+            <td>
+              <button type="button" class="btn btn-outline-success btn-sm" (click)="editar(usuarios, content)"><i class="fa fa-edit"></i></button>
+              <button type="button" class="btn btn-outline-danger btn-sm" (click)="apagar(usuarios)"><i class="fa fa-times"></i></button>
+            </td>
+          </tr>  
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-outline-dark" (click)="adicionar(contentModalAdicionar)"><i class = "fa fa-plus"> </i>Cadastre-se</button>
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-editar-usuarios">Editar Usuarios</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #usuariosForm = "ngForm">
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <div class="input-group">
+                <input id="nome" class="form-control" ngModel="{{usuariosSelecionado.nome}}" name = "nome">
+              </div>
+              <label for="email">Email</label>
+              <div class="input-group">
+                <input id="email" class="form-control" ngModel="{{usuariosSelecionado.email}}" name = "email">
+              </div>
+              <label for="apelido">Apelido</label>
+              <div class="input-group">
+                <input id="apelido" class="form-control" ngModel="{{usuariosSelecionado.apelido}}" name = "apelido">
+              </div>
+              <label for="lista">Lista</label>
+              <div class="input-group">
+                <input id="lista" class="form-control" ngModel="{{usuariosSelecionado.lista}}" name = "lista">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close(usuariosForm)">Save</button>
+        </div>
+      </ng-template>
+      <ng-template #contentModalAdicionar let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-adicionar-usuarios"> Adicionar Usuarios</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #usuariosForm = "ngForm">
+            <div class="form-group">
+              <label for="nome_adicionar">Nome</label>
+              <div class="input-group">
+                <input id="nome_adicionar" class="form-control"[(ngModel)]="usuariosNovo.nome" name = "nome_adicionar">
+              </div>
+              <label for="email_adicionar">Email</label>
+              <div class="input-group">
+                <input id="email_adicionar" class="form-control" [(ngModel)]="usuariosNovo.email" name = "email_adicionar">
+              </div>
+              <label for="apelido_adicionar">Apelido</label>
+              <div class="input-group">
+                <input id="apelido_adicionar" class="form-control" [(ngModel)]="usuariosNovo.apelido" name = "apelido_adicionar">
+              </div>
+              <label for="lista_adicionar">Lista</label>
+              <div class="input-group">
+                <input id="lista_adicionar" class="form-control" [(ngModel)]="usuariosNovo.lista" name = "lista_adicionar">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-success" (click)="modal.close(usuariosFormAdicionar)">Save</button>
+        </div>
+      </ng-template>        
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+
+
+

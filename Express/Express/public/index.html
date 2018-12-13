@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Alunos e Professores</title>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "/alunos",
+                success: function(alunos) {
+
+                    for ( var x = 0; x < alunos.length; x++ ) {
+                        var linha = $("<tr>");
+
+                        var row = $("<th>");
+                        var nome = $("<td>");
+                        var email = $("<td>");
+                        var cr = $("<td>");
+
+                        row.text(x)
+                        nome.text(alunos[x].nome);
+                        email.text(alunos[x].email);
+                        cr.text(alunos[x].cr);
+
+                        linha.append(row);
+                        linha.append(nome);
+                        linha.append(email);
+                        linha.append(cr);
+
+                        $("#alunos_body").append(linha);
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Lista de Alunos</a>
+    </nav>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">CR</th>
+        </tr>
+        </thead>
+        <tbody id="alunos_body">
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

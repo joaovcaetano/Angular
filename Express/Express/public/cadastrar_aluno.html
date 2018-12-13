@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script>
+        $(document).ready(function() {
+            $("#btn_cadastrar").on("click", function(e){
+                var aluno = {};
+
+                aluno.nome = $("#aluno_nome").val();
+                aluno.email = $("#aluno_email").val();
+                aluno.CR = $("#aluno_CR").val();
+
+                $.ajax({
+                    url: "/alunos",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(aluno),
+                    success: function( result ) {
+                        alert("Vamos embora daqui a pouco.");
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+<div class="container-fluid">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Cadastrar Alunos</a>
+    </nav>
+
+    <form id="aluno_form">
+        <div class="form-group">
+            <label for="aluno_nome">Nome</label>
+            <input type="text" class="form-control" id="aluno_nome" placeholder="Entre com o nome do aluno">
+        </div>
+        <div class="form-group">
+            <label for="aluno_email">Email</label>
+            <input type="email" class="form-control" id="aluno_email" placeholder="Entre com o email do aluno">
+        </div>
+        <div class="form-group">
+            <label for="aluno_CR">CR</label>
+            <input type="text" class="form-control" id="aluno_CR" placeholder="Entre com o CR do aluno">
+        </div>
+        <button id="btn_cadastrar" type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+</body>
+</html>
